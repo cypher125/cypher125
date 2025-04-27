@@ -1,6 +1,6 @@
 <div align="center">
 
-# Hey, I’m Cyrus 👋
+# Hey, I’m Osawaye Cyrus 👋
 
 [![Typing SVG](https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=28&pause=1000&color=00F7FF&width=435&lines=Full-Stack+Engineer;UI%2FUX+Designer;Python+%26+JavaScript+Enthusiast)](https://git.io/typing-svg)
 
@@ -20,22 +20,12 @@
 
 ### 🛠 Tech Stack
 
-**Frontend:**  
-Next.js • TypeScript • TailwindCSS • HTML • CSS • JavaScript
-
-**Backend:**  
-Django • Python • REST APIs
-
-**Others:**  
-UI/UX Design • Web Automation • Web Scraping • Data Visualization • AI Bots
-
----
+<div align="center"> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original-wordmark.svg" width="50" alt="Next.js"/> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" width="50" alt="TypeScript"/> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-plain.svg" width="50" alt="TailwindCSS"/> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" width="50" alt="HTML5"/> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" width="50" alt="CSS3"/> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" width="50" alt="JavaScript"/> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" width="50" alt="Python"/> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg" width="50" alt="Django"/> </div>
 
 ### 📢 Let's Connect
 
-- [LinkedIn](#) 🔍
 - [Portfolio Website](https://cyrus-rho.vercel.app/) 🛍️
-- Email: [osawaye@gmail.com] 📧
+- Email: [osawayecyrus@gmail.com] 📧
 
 ---
 
@@ -49,7 +39,6 @@ UI/UX Design • Web Automation • Web Scraping • Data Visualization • AI B
 
 ![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=cypher125&layout=compact&theme=tokyonight)
 
-![GitHub Trophies](https://github-profile-trophy.vercel.app/?username=cypher125&theme=tokyonight&margin-w=10&margin-h=10)
 
 ---
 
