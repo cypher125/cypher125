@@ -50,16 +50,19 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           USERNAME: ${{ github.repository_owner }}
 
+      # Into a fresh folder, not into dist/: snk runs as a Docker container, so
+      # the dist/ it creates is owned by root and the runner cannot write to it.
       - name: Collect
         run: |
-          cp profile-3d-contrib/*.svg dist/
-          ls -la dist
+          mkdir -p out
+          cp dist/*.svg profile-3d-contrib/*.svg out/
+          ls -la out
 
       - name: Publish to the output branch
         uses: crazy-max/ghaction-github-pages@v5
         with:
           target_branch: output
-          build_dir: dist
+          build_dir: out
           keep_history: false
           jekyll: false
           commit_message: Regenerate profile graphics
