@@ -1,0 +1,67 @@
+# Rebuilds the two contribution graphics on the profile: the 3D graph and the
+# snake. They are force-pushed to the `output` branch with no history, so the
+# generated SVGs never clutter main; the README reads them from there.
+#
+# Only the built-in GITHUB_TOKEN is used - no personal token, no secret to leak.
+#
+# Once a day on purpose. Profiles that run jobs like this every few minutes and
+# commit as themselves are farming contributions. This commits as
+# github-actions, to a side branch, so it adds nothing to the graph it draws.
+#
+# GitHub pauses scheduled workflows after 60 days with no commits to the repo.
+# If the graphics go stale, re-enable this under the Actions tab, or run it by
+# hand from there (workflow_dispatch).
+
+name: Profile graphics
+
+on:
+  schedule:
+    - cron: "23 4 * * *"   # 04:23 UTC daily - off the hour, when queues are shortest
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: [".github/workflows/profile-graphics.yml"]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: profile-graphics
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Snake
+        uses: Platane/snk@v3
+        with:
+          github_user_name: ${{ github.repository_owner }}
+          outputs: |
+            dist/snake-light.svg?color_snake=#b8480c
+            dist/snake-dark.svg?palette=github-dark&color_snake=#ff8a3d
+
+      - name: 3D contribution graph
+        uses: yoshi389111/github-profile-3d-contrib@v0.9.3
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          USERNAME: ${{ github.repository_owner }}
+
+      - name: Collect
+        run: |
+          cp profile-3d-contrib/*.svg dist/
+          ls -la dist
+
+      - name: Publish to the output branch
+        uses: crazy-max/ghaction-github-pages@v5
+        with:
+          target_branch: output
+          build_dir: dist
+          keep_history: false
+          jekyll: false
+          commit_message: Regenerate profile graphics
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
