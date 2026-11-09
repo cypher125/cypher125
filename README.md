@@ -34,7 +34,7 @@
 I am a software engineer who builds AI systems. Most automation people cannot build the application; most developers do not do automation. I ship both - Django and Next.js applications on one side, n8n pipelines and voice agents on the other - and the systems below are the intersection.
 
 - **AI systems:** agents, RAG and MCP tools ([Axion-Code][axion], [code review agent][cra], [two RAG stacks][card-rag])
-- **Software:** full-stack Next.js, Django and FastAPI apps ([OREE][oree], [PayLink][card-paylink], [AspireBridge][card-aspire], [Chemoventry][card-chemo])
+- **Software:** full-stack Next.js, Django and FastAPI apps ([OREE][oree], [tizOS][card-tizos], [PayLink][card-paylink], [AspireBridge][card-aspire], [Chemoventry][card-chemo])
 - **Automation:** n8n pipelines and integrations (17 systems, 831 nodes)
 - **Voice agents:** [live in production][card-voice], 2,109 ms median turn
 - **B2B lead systems:** lead research, scoring and outreach ([OREE][oree], [ICP-tiered outreach][card-icp])
@@ -63,16 +63,13 @@ It started as 7 n8n workflows and 228 nodes, and it worked. It stopped being the
 
 **Live in production** · private
 
-Answers the phone, books into a real calendar, and hands the outcome to n8n over a signed webhook. Six intents: book, reschedule, cancel, hours and location, take a message, escalate.
+[![The voice agent's landing page: 'Picks up. Books it. Writes it down.' beside a live call card mid-booking, with create_booking confirmed in Postgres in 119 ms.](assets/voice-landing.jpg)][card-voice]
 
-```text
-caller   Hi, can I move my Thursday appointment?
-agent    Sure - what day works instead?                         2,109 ms
-caller   Friday morning if you have it.
-agent    Friday has 6 slots before 12:30. Earliest is 9:00.     1,984 ms
-```
+Answers the phone, books into a real calendar, and hands the outcome to n8n over a signed webhook. Six intents: book, reschedule, cancel, hours and location, take a message, escalate. Every call becomes a record: what was said, how long each silence lasted, which tools ran and how fast, and what was extracted afterwards.
 
-`2,109 ms median turn` &nbsp; `201 offline tests` &nbsp; `6 live intents`
+[![The call record for a booked checkup: the call split into caller speech, dead air, agent speech and tool time; the transcript with check_availability in 84 ms and create_booking in 119 ms; what Claude extracted after the call; and both tools against a 200 ms ceiling.](assets/voice-call-record.jpg)][card-voice]
+
+`2,109 ms median turn` &nbsp; `749 automated tests` &nbsp; `6 live intents`
 
 <details>
 <summary><b>The bug worth telling</b></summary>
@@ -82,7 +79,7 @@ Bookings flowed out to Google Calendar and nothing came back. Both halves were h
 
 </details>
 
-<sub>FastAPI on Modal · Neon Postgres · Claude Haiku 4.5 · Deepgram Flux · Google Calendar · HMAC-SHA256 webhooks. Turn latency is the measured median on clean audio; the exchange above illustrates the reschedule path.</sub>
+<sub>FastAPI on Modal · Neon Postgres · Claude Haiku 4.5 · Deepgram Flux · Google Calendar · HMAC-SHA256 webhooks. Both screens are from the design files the frontend was built from, with sample data; Northgate Clinic is the demo tenant. Turn latency is the measured median on clean audio.</sub>
 
 ### Content pipeline and operations dashboard
 
@@ -95,6 +92,18 @@ An n8n publishing pipeline and the Next.js screen the client runs it from. The p
 `456 posts published` &nbsp; `180 per month` &nbsp; `7 slots per day`
 
 <sub>n8n · Next.js · FastAPI · Meta Graph API · multi-tenant. Client identifiers are cropped or redacted.</sub>
+
+### tizOS
+
+**Private, client work** · multi-brand AI content platform · built solo
+
+[![The tizOS review screen: videos waiting for approval on the left; on the right one video with Approve and Turn down beside the second AI pass's findings, five things worth a look, from a missing closing line to a caption that promises a shot the footage never shows.](assets/tizos-review.jpg)][card-tizos]
+
+Phone footage and a voice note go in; finished, on-brand videos come out. It describes every clip moment by moment, plans the videos worth making and shows its reasoning before anything is made, and enforces the brand's rules in code after the model answers rather than trusting the prompt. Then a second AI pass reads each video with the opposite brief - find problems, not reasons to approve - and a finding that breaks a rule blocks approval.
+
+`5 networks, one login` &nbsp; `2 AI passes: plan, then critique` &nbsp; `30 days of nightly backups`
+
+<sub>Next.js · FastAPI · PostgreSQL · Redis queue · FFmpeg · faster-whisper · Claude API. The client's brands, footage and places are blurred.</sub>
 
 ### Parallel market research
 
@@ -216,6 +225,7 @@ $ axion -p "Find and fix the bug in auth.py"
 [contact]: https://osawayecyrus.vercel.app/#contact
 [card-voice]: https://osawayecyrus.vercel.app/#voice-booking-agent
 [card-pipeline]: https://osawayecyrus.vercel.app/#content-pipeline
+[card-tizos]: https://osawayecyrus.vercel.app/#tizos
 [card-research]: https://osawayecyrus.vercel.app/#market-research-pipeline
 [card-whatsapp]: https://osawayecyrus.vercel.app/#whatsapp-booking-agent
 [card-rag]: https://osawayecyrus.vercel.app/#rag-document-pipeline
